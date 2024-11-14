@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:test_app/bloc/app_bloc.dart';
 import 'package:test_app/views/route_a.dart';
 import 'package:test_app/views/route_b.dart';
 
@@ -7,7 +9,10 @@ final appRoutes = GoRouter(
   routes: [
     GoRoute(
       path: RoutesName.routeA.route,
-      builder: (context, state) => const RouteA(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => AppBloc(),
+        child: const RouteA(),
+      ),
     ),
     GoRoute(
       path: RoutesName.routeB.route,
